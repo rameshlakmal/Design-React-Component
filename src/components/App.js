@@ -18,8 +18,3 @@ function App() {
 
 export default App;
 
-
-
-<div>
-    <span></span>
-</div>
