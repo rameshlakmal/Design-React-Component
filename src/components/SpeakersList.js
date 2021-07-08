@@ -37,10 +37,13 @@ function SpeakersList({ showSessions }) {
                                 speaker={speaker}
                                 showSessions={showSessions}
                                 onFavoriteToggle={(doneCallback) => {
-                                    updateRecord({
-                                        ...speaker,
-                                        favorite: !speaker.favorite,
-                                    }, doneCallback);
+                                    updateRecord(
+                                        {
+                                            ...speaker,
+                                            favorite: !speaker.favorite,
+                                        },
+                                        doneCallback
+                                    );
                                 }}
                             />
                         );
