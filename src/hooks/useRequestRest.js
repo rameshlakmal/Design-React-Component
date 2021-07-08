@@ -7,7 +7,7 @@ export const REQUEST_STATUS = {
     FAILURE: "failure",
 };
 
-const resUrl = "api/speakers";
+const restUrl = "api/speakers";
 
 function useRequestRest() {
     const [data, setData] = useState([]);
@@ -31,9 +31,8 @@ function useRequestRest() {
     function updateRecord(record, doneCallback) {
         const originalRecords = [...data];
         const newRecords = data.map(function (rec) {
-            return rec.id === recordUpdated.id ? recordUpdated : rec;
+            return rec.id === record.id ? record : rec;
         });
-
         async function delayFunction() {
             try {
                 setData(newRecords);
@@ -52,8 +51,6 @@ function useRequestRest() {
         delayFunction();
     }
 
-
-
     function deleteRecord(record, doneCallback) {
         const originalRecords = [...data];
         const newRecords = data.filter(function (rec) {
@@ -62,7 +59,7 @@ function useRequestRest() {
         async function delayFunction() {
             try {
                 setData(newRecords);
-                await axios.delete(`${resUrl}/${record.id}`, record);
+                await axios.delete(`${restUrl}/${record.id}`, record);
                 if (doneCallback) {
                     doneCallback();
                 }
@@ -76,20 +73,14 @@ function useRequestRest() {
         }
         delayFunction();
     }
-
-
-
-
-
 
     function insertRecord(record, doneCallback) {
         const originalRecords = [...data];
         const newRecords = [record, ...data];
-
         async function delayFunction() {
             try {
                 setData(newRecords);
-                await axios.post(`${resUrl}/99999`, record);
+                await axios.post(`${restUrl}/99999`, record);
                 if (doneCallback) {
                     doneCallback();
                 }
@@ -103,7 +94,6 @@ function useRequestRest() {
         }
         delayFunction();
     }
-
 
     return {
         data,

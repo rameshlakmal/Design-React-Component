@@ -28,9 +28,8 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
     function updateRecord(record, doneCallback) {
         const originalRecords = [...data];
         const newRecords = data.map(function (rec) {
-            return rec.id === recordUpdated.id ? recordUpdated : rec;
+            return rec.id === record.id ? record : rec;
         });
-
         async function delayFunction() {
             try {
                 setData(newRecords);
@@ -48,8 +47,6 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
         }
         delayFunction();
     }
-
-
 
     function deleteRecord(record, doneCallback) {
         const originalRecords = [...data];
@@ -74,18 +71,13 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
         delayFunction();
     }
 
-
-
-
-
-
     function insertRecord(record, doneCallback) {
         const originalRecords = [...data];
         const newRecords = [record, ...data];
-
         async function delayFunction() {
             try {
                 setData(newRecords);
+                debugger;
                 await delay(delayTime);
                 if (doneCallback) {
                     doneCallback();
@@ -100,7 +92,6 @@ function useRequestDelay(delayTime = 1000, initialData = []) {
         }
         delayFunction();
     }
-
 
     return {
         data,

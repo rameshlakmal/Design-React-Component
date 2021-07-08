@@ -1,15 +1,18 @@
 //import { data } from '../../../SpeakerData';
-import path, { resolve } from "path";
+import path from "path";
 import fs from "fs";
 
 const { promisify } = require("util");
 const readFile = promisify(fs.readFile);
-const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms) });
+const delay = (ms) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
 
 export default async function handler(req, res) {
-    // res.status(200).send(JSON.stringify(data, null, 2));
+    //res.status(200).send(JSON.stringify(data, null, 2));
 
-    const joinFile = path.resolve("./", "db.json");
+    const jsonFile = path.resolve("./", "db.json");
     try {
         const readFileData = await readFile(jsonFile);
         await delay(1000);
